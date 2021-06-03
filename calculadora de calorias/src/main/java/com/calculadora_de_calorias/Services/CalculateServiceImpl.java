@@ -1,5 +1,6 @@
 package com.calculadora_de_calorias.Services;
 
+import com.calculadora_de_calorias.DTO.PlatoDTO;
 import com.calculadora_de_calorias.Entities.Ingrediente;
 import com.calculadora_de_calorias.Entities.IngredienteJson;
 import com.calculadora_de_calorias.Entities.Plato;
@@ -21,23 +22,12 @@ public class CalculateServiceImpl implements ICalculateService{
     @Autowired
     ICaloriasRepository caloriasRepository;
 
-    public String resultadoPlato(Plato plato){
+    public PlatoDTO resultadoPlato(Plato plato){
         var caloriasPorPlato = calcularCaloriasPorPlato(plato);
         var caloriasPorIngrediente = calcularCaloriasPorIngrediente();
         var ingredienteMayorCalorias = calcularIngredienteConMasCalorias();
 
-        String resp = "";
-
-        resp = "La totalidad de las calorias en el plato es: "+caloriasPorPlato;
-        resp += "\n El listado de ingredientes es:";
-        for (IngredienteJson ingrediente : caloriasPorIngrediente) {
-            resp += "\n ingrediente: "+ingrediente.getName()+ ", calorias: "+ingrediente.getCalories();
-        }
-
-        resp += "\n El ingrediente con mayor cantidad de calorias es: "+ingredienteMayorCalorias.getName();
-
-
-        return resp;
+        return new PlatoDTO(caloriasPorPlato,caloriasPorIngrediente,ingredienteMayorCalorias.getName());
     }
 
     @Override

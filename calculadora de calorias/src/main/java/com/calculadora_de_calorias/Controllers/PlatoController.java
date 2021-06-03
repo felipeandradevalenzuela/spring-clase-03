@@ -1,5 +1,6 @@
 package com.calculadora_de_calorias.Controllers;
 
+import com.calculadora_de_calorias.DTO.PlatoDTO;
 import com.calculadora_de_calorias.Entities.Plato;
 import com.calculadora_de_calorias.Services.ICalculateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class PlatoController {
     private ICalculateService calculateService;
 
     @PostMapping("/calculateCalories")
-    public String calculateCalories(@RequestBody Plato plato){
+    public PlatoDTO calculateCalories(@RequestBody Plato plato){
         return calculateService.resultadoPlato(plato);
     }
 }
