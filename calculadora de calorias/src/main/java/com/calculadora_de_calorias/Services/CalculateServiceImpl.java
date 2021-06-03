@@ -27,7 +27,9 @@ public class CalculateServiceImpl implements ICalculateService{
         var caloriasPorIngrediente = calcularCaloriasPorIngrediente();
         var ingredienteMayorCalorias = calcularIngredienteConMasCalorias();
 
+
         return new PlatoDTO(caloriasPorPlato,caloriasPorIngrediente,ingredienteMayorCalorias.getName());
+
     }
 
     @Override

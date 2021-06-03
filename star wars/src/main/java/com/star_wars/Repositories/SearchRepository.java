@@ -47,7 +47,7 @@ public class SearchRepository implements ISearchRepository{
     @Override
     public List<Character> getCharacterByName(String name) throws NoSuchFieldException {
         return this.personajes.stream()
-                .filter(personaje -> personaje.getName()
-                .contains(name)).collect(Collectors.toList());
+                .filter(personaje -> personaje.getName().toUpperCase()
+                .contains(name.toUpperCase())).collect(Collectors.toList());
     }
 }
